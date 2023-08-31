@@ -1,11 +1,9 @@
-Em uma Faculdade, estudantes matriculam-se em disciplinas!
-O banco de dados para este processo de negócio deve fornecer as seguintes
-informações:
- Para cada ALUNO, RA, nome, endereço, telefone.
- Para cada DISCIPLINA, código, nome e carga horária da disciplina
- Para cada MATRICULA, RA do aluno, código da disciplina e data da matricula
- Cada aluno deve se matricular em pelo menos uma disciplina e no máximo em
-3 disciplinas
+-- Em uma Faculdade, estudantes matriculam-se em disciplinas!
+-- O banco de dados para este processo de negócio deve fornecer as seguintes informações:
+-- Para cada ALUNO, RA, nome, endereço, telefone.
+-- Para cada DISCIPLINA, código, nome e carga horária da disciplina
+-- Para cada MATRICULA, RA do aluno, código da disciplina e data da matricula
+-- Cada aluno deve se matricular em pelo menos uma disciplina e no máximo em 3 disciplinas
 
 create database faculdade;
 

@@ -1,6 +1,7 @@
---criado BancoProduto
+--criando BancoProduto
 --auto_increment = identity
 --double = numeric(10,2)
+create database BancoProduto; 
 
 create table estados(
 	id int identity not null,
@@ -35,7 +36,7 @@ create table enderecos(
 	complemento varchar(255),
 	pais_id int not null,
 	estado_id int not null,
-	cidade_id int not null
+	cidade_id int not null,
 	primary key(id, cep),
 	foreign key (pais_id ) references paises(id),
 	foreign key (estado_id) references estados(id),
@@ -55,15 +56,21 @@ create table clientes(
 	nome_fantasia varchar(100) not null,
 	tipo_pessoa char(1) check(tipo_pessoa in('F', 'J')) not null,
 	cpf char(11) unique not null,
-	cnpj char(14) unique not null,
+	cnpj char(14) unique,
 	categoria_id int not null,
 	email varchar(255) unique not null,
-	status char(1) check(status in('S', 'N')) not null,
-	data_criacao datetime not null,
-	ultima_alteracao datetime not null,
+--	status char(1) check(status in('S', 'N')) not null,
+	status char(1) not null DEFAULT 'A' COMMENT 'A-Ativo/C-Cancelado',
+	data_criacao datetime DEFAULT not null,
+	ultima_alteracao datetime DEFAULT not null,
 	primary key(id),
 	foreign key (categoria_id) references categorias(id)
 	);
+
+--	PRIMARY KEY(id),
+--	UNIQUE KEY pk_cliente_id(id),
+--	KEY fk_cliente_categoria_id_idx (categoria_id),
+--	CONSTRAINT fk_cliente_categoria_id FOREIGN key(categoria_id) REFERENCES categorias(id) on delete no ACTION on UPDATE no ACTION);
 
 create table fornecedores(
 	id int identity not null,
@@ -135,7 +142,7 @@ create table itens_orcamentos(
 	fornecedor_id int not null,
 	quantidade int not null,
 	valor_unitario numeric(10,2) not null,
-	desconto numeric(10,2) not null
+	desconto numeric(10,2) not null,
 	primary key(id),
 	foreign key (orcamento_id) references orcamentos(id),
 	foreign key (fornecedor_id) references fornecedores(id)

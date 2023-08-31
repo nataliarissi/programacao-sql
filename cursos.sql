@@ -1,18 +1,18 @@
-Considere as seguintes tabelas:
+--Considere as seguintes tabelas:
 
-Curso (Codigo (PK), Nome, NumeroVagas)
-Instrutor (Codigo (PK), Nome, Apelido, Fone, Celular)
-Horario (Codigo (PK), Sala, Hora)
-Ministrado (DataCurso (PK), CodigoHorario (FK), CodigoCurso (FK), CodigoInstrutor (FK))
+--Curso (Codigo (PK), Nome, NumeroVagas)
+--Instrutor (Codigo (PK), Nome, Apelido, Fone, Celular)
+--Horario (Codigo (PK), Sala, Hora)
+--Ministrado (DataCurso (PK), CodigoHorario (FK), CodigoCurso (FK), CodigoInstrutor (FK))
 
-Através de comandos SQL, faça:
+--Através de comandos SQL, faça:
 
-Mostre todas as tabelas do seu BD;
-Insira pelo menos 5 (cinco) registros em cada tabela;
-Adicione o campo Autorizado char(1) na tabela cursos;
-Mostre o nome de todos os instrutores;
-Mostre todos os campos da tabela horário;
-Mostre o nome do curso.
+--Mostre todas as tabelas do seu BD;
+--Insira pelo menos 5 (cinco) registros em cada tabela;
+--Adicione o campo Autorizado char(1) na tabela cursos;
+--Mostre o nome de todos os instrutores;
+--Mostre todos os campos da tabela horário;
+--Mostre o nome do curso.
 
 create database cursos;
 

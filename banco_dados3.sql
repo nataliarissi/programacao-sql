@@ -1,15 +1,3 @@
-Fazer os comandos em sql dos seguintes bancos de dados:
-
-Navio: um navio tem um nome, um código de registro, uma capacidade de transporte e um
-ano de construção.
-
-Carro: um carro tem um fabricante, um nome de série e um modelo (exemplo:
-Honda Accord DX, no qual Honda é o fabricante, Accord é o nome de série e DX é o
-modelo). Um carro também possui um código de identificação do veículo, a placa e a cor.
-
-Restaurante: um restaurante tem um endereço, uma capacidade, um número de telefone e
-um estilo de comida (por exemplo: francesa, russa, chinesa).
-
 create database banco_navio;
 
 use banco_navio;

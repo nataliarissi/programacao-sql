@@ -70,7 +70,7 @@ insert into contatos(nome, fone, email)
 	values('Tomoe', '77777-7777', 'yok@email.com');
 
 insert into contatos(nome, fone, email)
-	values('Ana Laura', '98747-1100', 'ana@email.com');
+	values('Sophie', '98877-1100', 'soph@email.com');
 
 show TABLES
 
