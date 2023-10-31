@@ -1,119 +1,120 @@
-create database BancoInvestimento
-go
-use BancoInvestimento
-go
-create table cultura(
-	id int identity primary key,
-	local_armazenamento varchar(100) not null
+CREATE DATABASE BANCOINVESTIMENTO
+GO
+USE BANCOINVESTIMENTO
+GO
+CREATE TABLE CULTURA(
+	ID INT IDENTITY PRIMARY KEY,
+	LOCAL_ARMAZENAMENTO VARCHAR(100) NOT NULL
 )
-create table associado(
-	id int identity primary key,
-	nome varchar(255) not null,
-	data_hora datetime not null default getdate()
+CREATE TABLE ASSOCIADO(
+	ID INT IDENTITY PRIMARY KEY,
+	NOME VARCHAR(255) NOT NULL,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE()
 )
-go
-create table quantidade(
-	id int identity primary key,
-	culturas int not null,
-	data_hora datetime not null default getdate()
+GO
+CREATE TABLE QUANTIDADE(
+	ID INT IDENTITY PRIMARY KEY,
+	CULTURA INT NOT NULL,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE()
 )
-go
-create table quantidade_itens(
-	id int identity primary key,
-	itens_investimento_id int not null,
-	data_hora datetime not null default getdate()
+GO
+CREATE TABLE QUANTIDADE_ITEM(
+	ID INT IDENTITY PRIMARY KEY,
+	ITEM_INVESTIMENTO_ID INT NOT NULL,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE()
 )
-go
-create table fornecedor_investimento(
-	id int identity primary key,
-	nome varchar(255) not null,
-	telefone char(11) not null,
-	email varchar(150) not null
+GO
+CREATE TABLE FORNECEDOR_INVESTIMENTO(
+	ID INT IDENTITY PRIMARY KEY,
+	NOME VARCHAR(255) NOT NULL,
+	TELEFONE CHAR(11) NOT NULL,
+	EMAIL VARCHAR(150) NOT NULL
 )
-go
-create table fornecedor_custeio(
-	id int identity primary key,
-	nome varchar(255) not null,
-	telefone char(11) not null,
-	email varchar(150) not null
+GO
+CREATE TABLE FORNECEDOR_CUSTEIO(
+	ID INT IDENTITY PRIMARY KEY,
+	NOME VARCHAR(255) NOT NULL,
+	TELEFONE CHAR(11) NOT NULL,
+	EMAIL VARCHAR(150) NOT NULL
 )
-go
-create table itens_investimento(
-	id int identity primary key,
-	nome varchar(255) not null,
-	marca varchar(255) not null,
-	especificacao varchar(255) not null,
-	quantidade int not null,
-	valor numeric(10, 2) not null,
-	fornecedor_id int not null,
-	data_hora datetime not null default getdate(),
+GO
+CREATE TABLE ITEM_INVESTIMENTO(
+	ID INT IDENTITY PRIMARY KEY,
+	NOME VARCHAR(255) NOT NULL,
+	MARCA VARCHAR(255) NOT NULL,
+	ESPECIFICACAO VARCHAR(255) NOT NULL,
+	QUANTIDADE INT NOT NULL,
+	VALOR NUMERIC(10, 2) NOT NULL,
+	FORNECEDOR_ID INT NOT NULL,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE(),
 
-	foreign key(fornecedor_id) references fornecedor_investimento(id)
+	FOREIGN KEY(FORNECEDOR_ID) REFERENCES FORNECEDOR_INVESTIMENTO(ID)
 )
-go
-create table investimento(
-	id int identity primary key,
-	data_cadastro datetime not null default getdate(),
-	status bit not null default 0,
-	nome_assoc varchar(255) not null, 
-	total_proposta numeric(10,2),
-	proposta_financiada numeric(10,2),
-	autorizacao_investimento varchar(255) not null,
-	data_aprovada date not null,
-	origem_proposta varchar(255) not null,
-	informacoes_complmt varchar(255) not null,
-	itens_id int not null,
+GO
+CREATE TABLE INVESTIMENTO(
+	ID INT IDENTITY PRIMARY KEY,
+	DATA_CADASTRO DATETIME NOT NULL DEFAULT GETDATE(),
+	STATUS BIT NOT NULL DEFAULT 0,
+	NOME_ASSOC VARCHAR(255) NOT NULL, 
+	TOTAL_PROPOSTA NUMERIC(10,2),
+	PROPOSTA_FINANCIADA NUMERIC(10,2),
+	AUTORIZACAO_INVESTIMENTO VARCHAR(255) NOT NULL,
+	DATA_APROVADA DATE NOT NULL,
+	ORIGEM_PROPOSTA VARCHAR(255) NOT NULL,
+	INFORMACAO_COMPLMT VARCHAR(255) NOT NULL,
+	ITEM_ID INT NOT NULL,
 	
-	foreign key (id) references itens_investimento(id),
-	foreign key(itens_id) references quantidade_itens(id)
+	FOREIGN KEY (ID) REFERENCES ITEM_INVESTIMENTO(ID),
+	FOREIGN KEY(ITEM_ID) REFERENCES QUANTIDADE_ITEM(ID)
 )
-go
-create table custeio(
-	id int identity primary key,
-	data_hora datetime not null default getdate(),
-	status bit not null default 0,
-	associado_id int not null,
-	valor_total numeric(10, 2) not null,
-	valor_financiado numeric(10, 2) not null,
-	autorizacao_chefe bit not null default 0,
-	data_aprovacao date not null,
-	origem varchar(255) not null,
-	informacoes_complmt varchar(255) not null,
-	finalidade_custo varchar(255),
-	itens_id int not null,
-	quantidade_id int not null,
+GO
+CREATE TABLE CUSTEIO(
+	ID INT IDENTITY PRIMARY KEY,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE(),
+	STATUS BIT NOT NULL DEFAULT 0,
+	ASSOCIADO_ID INT NOT NULL,
+	VALOR_TOTAL NUMERIC(10, 2) NOT NULL,
+	VALOR_FINANCIADO NUMERIC(10, 2) NOT NULL,
+	AUTORIZACAO_CHEFE BIT NOT NULL DEFAULT 0,
+	DATA_APROVACAO DATE NOT NULL,
+	ORIGEM VARCHAR(255) NOT NULL,
+	INFORMACAO_COMPLMT VARCHAR(255) NOT NULL,
+	FINALIDADE_CUSTO VARCHAR(255),
+	ITEM_ID INT NOT NULL,
+	QUANTIDADE_ID INT NOT NULL,
 	
-	foreign key (itens_id) references itens_investimento(id),
-	foreign key (quantidade_id) references quantidade(id)
+	FOREIGN KEY (ITEM_ID) REFERENCES ITEM_INVESTIMENTO(ID),
+	FOREIGN KEY (QUANTIDADE_ID) REFERENCES QUANTIDADE(ID)
 )
-go
-create table itens_custeio(
-	id int identity primary key,
-	data_hora datetime not null default getdate(),
-	status bit not null default 0,
-	associado_id int not null,
-	valor_total numeric(10, 2) not null,
-	valor_financiado numeric(10, 2) not null,
-	autorizacao_fornecedor int not null,
-	data_aprovacao date not null,
-	origem varchar(255) not null,
-	informacoes_complmt varchar(255) not null,
-	finalidade_custo varchar(255),
-	itens_id int not null,
-	quantidade_id int not null,
+GO
+CREATE TABLE ITEM_CUSTEIO(
+	ID INT IDENTITY PRIMARY KEY,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE(),
+	STATUS BIT NOT NULL DEFAULT 0,
+	ASSOCIADO_ID INT NOT NULL,
+	VALOR_TOTAL NUMERIC(10, 2) NOT NULL,
+	VALOR_FINANCIADO NUMERIC(10, 2) NOT NULL,
+	AUTORIZACAO_FORNECEDOR INT NOT NULL,
+	DATA_APROVACAO DATE NOT NULL,
+	ORIGEM VARCHAR(255) NOT NULL,
+	INFORMACAO_COMPLMT VARCHAR(255) NOT NULL,
+	FINALIDADE_CUSTO VARCHAR(255),
+	ITEM_ID INT NOT NULL,
+	QUANTIDADE_ID INT NOT NULL,
 	
-	foreign key (autorizacao_fornecedor) references fornecedor_custeio(id),
-	foreign key (itens_id) references itens_investimento(id),
-	foreign key (quantidade_id) references quantidade_itens(id)	
+	FOREIGN KEY (AUTORIZACAO_FORNECEDOR) REFERENCES FORNECEDOR_CUSTEIO(ID),
+	FOREIGN KEY (ITEM_ID) REFERENCES ITEM_INVESTIMENTO(ID),
+	FOREIGN KEY (QUANTIDADE_ID) REFERENCES QUANTIDADE_ITEM(ID)	
 )
-create table usuario(
-	id int identity primary key,
-	nome varchar(255) not null,
-	idade int not null,
-	email varchar(100) not null,
-	celular char(11) not null,
-	data_hora datetime not null default getdate(),
-	associado_id int,
+GO
+CREATE TABLE CLIENTE(
+	ID INT IDENTITY PRIMARY KEY,
+	NOME VARCHAR(255) NOT NULL,
+	IDADE INT NOT NULL,
+	EMAIL VARCHAR(100) NOT NULL,
+	CELULAR CHAR(11) NOT NULL,
+	DATA_HORA DATETIME NOT NULL DEFAULT GETDATE(),
+	ASSOCIADO_ID INT,
 
-	foreign key (associado_id) references associado(id)
+	FOREIGN KEY (ASSOCIADO_ID) REFERENCES ASSOCIADO(ID)
 )
